@@ -285,7 +285,13 @@ public class ActivityMonitorService extends Service implements SensorEventListen
        requires there to be a listener listening
      */
     @Override
-    public void onLocationChanged(Location location) { }
+    public void onLocationChanged(Location location) {
+        // Assigns the previous location initially, then uses the 20 second
+        // interval for all following location data
+        if (previousLocation == null) {
+            previousLocation = location;
+        }
+    }
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) { }
